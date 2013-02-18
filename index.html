@@ -2,9 +2,49 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>jinshan's blog</title>
+    <title>socket.io测试</title>
+    <script src="http://jinshan.ap01.aws.af.cm/socket.io/socket.io.js"></script>
+    <script src="jquery.1.8.2.min.js"></script>
+    <script>
+        var touser = "";
+        $(document).ready(function(e){
+            var socket = io.connect('http://jinshan.ap01.aws.af.cm',{clId:'no1'});
+            socket.on('connect',function() {
+                alert("连接成功！");
+            });
+            socket.on('news', function (data) {
+                console.log(data);
+                socket.emit('my other event', { my: 'data' });
+            });
+            socket.on('message',function(data){
+                $("#maintext").append('<li style="color: green">'+data.fromm+':</li><li style="color: green">'+data.txt+'</li>');
+            });
+            socket.on('adduser',function(data){
+                $("#userlist").append('<div class="uli" style="color: blue">'+data.txt+'</div>');
+            });
+            $("#sendbtn").click(function(){
+                if(!touser){
+                    alert("请选择一个用户");
+                }else{
+                    socket.emit('send', {txt:$("#intxt").val(),tou:touser});
+                    $("#maintext").append('<li style="color: green">我:</li><li style="color: gray">'+$("#intxt").val()+'</li>');
+                }
+            });
+            $("#login").click(function(){
+                socket.emit('login', {txt:$("#userid").val()});
+            });
+            $(".uli").live("click",function(){
+                touser = $(this).text();
+                $(".uli").css({"backgroundColor":"white"});
+                $(this).css({"backgroundColor":"yellow"});
+            });
+        });
+    </script>
 </head>
 <body>
-<h1>金山的笔记</h1>
+<div><input id="userid"/><input id="login" type="button" value="登录"/></div>
+<div id="maintext" style="border: 1px #000 solid; float: left; width: 50%; height: 300px; font-size: 28px"></div>
+<div id="userlist" style="border: 1px #000 solid; float: right; width: 30%; height: 300px; font-size: 28px"></div>
+<div style="margin-top: 20px"><input id="intxt" style="width: 400px; font-size: 28px"/><input id="sendbtn" type="button" value="发送"/></div>
 </body>
 </html>
