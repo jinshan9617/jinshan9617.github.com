@@ -1,50 +1,64 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>socket.io测试</title>
-    <script src="http://jinshan.ap01.aws.af.cm/socket.io/socket.io.js"></script>
-    <script src="jquery.1.8.2.min.js"></script>
-    <script>
-        var touser = "";
-        $(document).ready(function(e){
-            var socket = io.connect('http://jinshan.ap01.aws.af.cm',{clId:'no1'});
-            socket.on('connect',function() {
-                alert("连接成功~~~~~~!!!!");
-            });
-            socket.on('news', function (data) {
-                console.log(data);
-                socket.emit('my other event', { my: 'data' });
-            });
-            socket.on('message',function(data){
-                $("#maintext").append('<li style="color: green">'+data.fromm+':</li><li style="color: green">'+data.txt+'</li>');
-            });
-            socket.on('adduser',function(data){
-                $("#userlist").append('<div class="uli" style="color: blue">'+data.txt+'</div>');
-            });
-            $("#sendbtn").click(function(){
-                if(!touser){
-                    alert("请选择一个用户");
-                }else{
-                    socket.emit('send', {txt:$("#intxt").val(),tou:touser});
-                    $("#maintext").append('<li style="color: green">我:</li><li style="color: gray">'+$("#intxt").val()+'</li>');
-                }
-            });
-            $("#login").click(function(){
-                socket.emit('login', {txt:$("#userid").val()});
-            });
-            $(".uli").live("click",function(){
-                touser = $(this).text();
-                $(".uli").css({"backgroundColor":"white"});
-                $(this).css({"backgroundColor":"yellow"});
-            });
-        });
-    </script>
-</head>
-<body>
-<div><input id="userid"/><input id="login" type="button" value="登录"/></div>
-<div id="maintext" style="border: 1px #000 solid; float: left; width: 50%; height: 300px; font-size: 28px"></div>
-<div id="userlist" style="border: 1px #000 solid; float: right; width: 30%; height: 300px; font-size: 28px"></div>
-<div style="margin-top: 20px"><input id="intxt" style="width: 400px; font-size: 28px"/><input id="sendbtn" type="button" value="发送"/></div>
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="styles/main.css">
+        <script src="scripts/vendor/modernizr.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            
+                
+                <div class="mainlogo">
+                    <h1>yeoman test!</h1>
+                    <p>by jin</p>
+                    <ul>
+                        <li>js is written via coffee</li>
+                        <li>css is written via sass/scss</li>
+                        <li>RequireJS</li>
+                        <li>layout by bootstrap</li>
+                    </ul>
+                    <h3>Enjoy coding! - Yeoman</h3>
+                </div>
+            
+        </div>
+        <div class="mainClass">
+            <div class="span3 layoutt3">span4</div>
+            <div class="span6 layoutt6">
+                <input id="testIn" style="font-size:24px; height:40px" placeholder="input some words
+                ">
+                <button id="testBtn" class="testBtn">Test_Button</button>
+            </div>
+            <div class="span3 layoutt3">span4</div>
+        </div>
+        <div id="backbonetest" class="container">
+            <div id="controle" class="controle">
+                <button id="addData" class="testBtn2">Add_Btn</button>
+            </div>
+            <div id="testlist">
+            </div>
+        </div>
+
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        
+
+        <script data-main="scripts/main" src="scripts/vendor/require.js"></script>
 </body>
+<script type="text/template" id="testTemp">
+    <div class="list6">
+     <%=testData%>
+    </div>
+</script>
 </html>
