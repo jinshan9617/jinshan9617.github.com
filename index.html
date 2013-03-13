@@ -18,16 +18,42 @@
     <div class="container">
         <div class="span6 offset3 loginpad">
             <h3>欢迎来到测试，请登录</h3>
-            <div class="innamebar row-fluid">
-                <div class="span8">
-                    <input type="text" class="input loginname" placeholder="请在此输入昵称">
+            <div id="loginput">
+                <div class="innamebar row-fluid">
+                    <div class="span8">
+                        <input type="text" class="input loginname" placeholder="请在此输入昵称">
+                    </div>
+                    <div class="span4">
+                        <button id="loginBtn" type="submit" class="btn-block btn btn-large btn-primary">登&nbsp&nbsp录</button>
+                    </div>
                 </div>
-                <div class="span4">
-                    <button id="loginBtn" type="submit" class="btn-block btn btn-large btn-primary">登&nbsp&nbsp录</button>
+                <div class="progress progress-striped active stickItem">
+                    <div id="loginbar" class="bar" style="width: 0%"></div>
                 </div>
             </div>
-            <div class="progress progress-striped active stickItem">
-                <div id="loginbar" class="bar" style="width: 0%"></div>
+            <div id="loading">
+                <div class="windows8">
+                <div class="wBall" id="wBall_1">
+                <div class="wInnerBall">
+                </div>
+                </div>
+                <div class="wBall" id="wBall_2">
+                <div class="wInnerBall">
+                </div>
+                </div>
+                <div class="wBall" id="wBall_3">
+                <div class="wInnerBall">
+                </div>
+                </div>
+                <div class="wBall" id="wBall_4">
+                <div class="wInnerBall">
+                </div>
+                </div>
+                <div class="wBall" id="wBall_5">
+                <div class="wInnerBall">
+                </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>
@@ -37,7 +63,7 @@
             <h4>by jin</h4>
         </div>
         <div class="row-fluid">
-            <div class="span8 textlayyout">
+            <div id="textlayyout" class="span8 textlayyout">
                 
             </div>
             <div class="btn-group btn-group-vertical span4 userlist">
